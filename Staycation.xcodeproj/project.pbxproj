@@ -1,0 +1,355 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05A0994918DDDAE000C3A8F3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A0994818DDDAE000C3A8F3 /* Cocoa.framework */; };
+		05A0995318DDDAE100C3A8F3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05A0995118DDDAE100C3A8F3 /* InfoPlist.strings */; };
+		05A0995518DDDAE100C3A8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0995418DDDAE100C3A8F3 /* main.m */; };
+		05A0995918DDDAE100C3A8F3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 05A0995718DDDAE100C3A8F3 /* Credits.rtf */; };
+		05A0995C18DDDAE100C3A8F3 /* STYDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0995B18DDDAE100C3A8F3 /* STYDocument.m */; };
+		05A0995F18DDDAE100C3A8F3 /* STYDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A0995D18DDDAE100C3A8F3 /* STYDocument.xib */; };
+		05A0996218DDDAE100C3A8F3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A0996018DDDAE100C3A8F3 /* MainMenu.xib */; };
+		05A0996418DDDAE100C3A8F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A0996318DDDAE100C3A8F3 /* Images.xcassets */; };
+		05A0998118DDDB2900C3A8F3 /* SpecialProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0998018DDDB2900C3A8F3 /* SpecialProtocol.m */; };
+		05A0998318DDDB9C00C3A8F3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A0998218DDDB9C00C3A8F3 /* WebKit.framework */; };
+		05A0998518DDDC4500C3A8F3 /* Example CGI Scripts in Resources */ = {isa = PBXBuildFile; fileRef = 05A0998418DDDC4500C3A8F3 /* Example CGI Scripts */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		05A0994518DDDAE000C3A8F3 /* Staycation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Staycation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05A0994818DDDAE000C3A8F3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		05A0994B18DDDAE000C3A8F3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		05A0994C18DDDAE000C3A8F3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		05A0994D18DDDAE000C3A8F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		05A0995018DDDAE100C3A8F3 /* Staycation-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Staycation-Info.plist"; sourceTree = "<group>"; };
+		05A0995218DDDAE100C3A8F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		05A0995418DDDAE100C3A8F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05A0995618DDDAE100C3A8F3 /* Staycation-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Staycation-Prefix.pch"; sourceTree = "<group>"; };
+		05A0995818DDDAE100C3A8F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		05A0995A18DDDAE100C3A8F3 /* STYDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STYDocument.h; sourceTree = "<group>"; };
+		05A0995B18DDDAE100C3A8F3 /* STYDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STYDocument.m; sourceTree = "<group>"; };
+		05A0995E18DDDAE100C3A8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/STYDocument.xib; sourceTree = "<group>"; };
+		05A0996118DDDAE100C3A8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		05A0996318DDDAE100C3A8F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		05A0996A18DDDAE100C3A8F3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		05A0997F18DDDB2900C3A8F3 /* SpecialProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialProtocol.h; sourceTree = "<group>"; };
+		05A0998018DDDB2900C3A8F3 /* SpecialProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialProtocol.m; sourceTree = "<group>"; };
+		05A0998218DDDB9C00C3A8F3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		05A0998418DDDC4500C3A8F3 /* Example CGI Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Example CGI Scripts"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05A0994218DDDAE000C3A8F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05A0998318DDDB9C00C3A8F3 /* WebKit.framework in Frameworks */,
+				05A0994918DDDAE000C3A8F3 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05A0993C18DDDAE000C3A8F3 = {
+			isa = PBXGroup;
+			children = (
+				05A0994E18DDDAE000C3A8F3 /* Staycation */,
+				05A0994718DDDAE000C3A8F3 /* Frameworks */,
+				05A0994618DDDAE000C3A8F3 /* Products */,
+				05A0998418DDDC4500C3A8F3 /* Example CGI Scripts */,
+			);
+			sourceTree = "<group>";
+		};
+		05A0994618DDDAE000C3A8F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05A0994518DDDAE000C3A8F3 /* Staycation.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		05A0994718DDDAE000C3A8F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05A0998218DDDB9C00C3A8F3 /* WebKit.framework */,
+				05A0994818DDDAE000C3A8F3 /* Cocoa.framework */,
+				05A0996A18DDDAE100C3A8F3 /* XCTest.framework */,
+				05A0994A18DDDAE000C3A8F3 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		05A0994A18DDDAE000C3A8F3 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05A0994B18DDDAE000C3A8F3 /* AppKit.framework */,
+				05A0994C18DDDAE000C3A8F3 /* CoreData.framework */,
+				05A0994D18DDDAE000C3A8F3 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		05A0994E18DDDAE000C3A8F3 /* Staycation */ = {
+			isa = PBXGroup;
+			children = (
+				05A0997F18DDDB2900C3A8F3 /* SpecialProtocol.h */,
+				05A0998018DDDB2900C3A8F3 /* SpecialProtocol.m */,
+				05A0995A18DDDAE100C3A8F3 /* STYDocument.h */,
+				05A0995B18DDDAE100C3A8F3 /* STYDocument.m */,
+				05A0995D18DDDAE100C3A8F3 /* STYDocument.xib */,
+				05A0996018DDDAE100C3A8F3 /* MainMenu.xib */,
+				05A0996318DDDAE100C3A8F3 /* Images.xcassets */,
+				05A0994F18DDDAE000C3A8F3 /* Supporting Files */,
+			);
+			path = Staycation;
+			sourceTree = "<group>";
+		};
+		05A0994F18DDDAE000C3A8F3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				05A0995018DDDAE100C3A8F3 /* Staycation-Info.plist */,
+				05A0995118DDDAE100C3A8F3 /* InfoPlist.strings */,
+				05A0995418DDDAE100C3A8F3 /* main.m */,
+				05A0995618DDDAE100C3A8F3 /* Staycation-Prefix.pch */,
+				05A0995718DDDAE100C3A8F3 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		05A0994418DDDAE000C3A8F3 /* Staycation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05A0997918DDDAE100C3A8F3 /* Build configuration list for PBXNativeTarget "Staycation" */;
+			buildPhases = (
+				05A0994118DDDAE000C3A8F3 /* Sources */,
+				05A0994218DDDAE000C3A8F3 /* Frameworks */,
+				05A0994318DDDAE000C3A8F3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Staycation;
+			productName = Staycation;
+			productReference = 05A0994518DDDAE000C3A8F3 /* Staycation.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		05A0993D18DDDAE000C3A8F3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = STY;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "John Scott";
+			};
+			buildConfigurationList = 05A0994018DDDAE000C3A8F3 /* Build configuration list for PBXProject "Staycation" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 05A0993C18DDDAE000C3A8F3;
+			productRefGroup = 05A0994618DDDAE000C3A8F3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05A0994418DDDAE000C3A8F3 /* Staycation */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05A0994318DDDAE000C3A8F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05A0995F18DDDAE100C3A8F3 /* STYDocument.xib in Resources */,
+				05A0996418DDDAE100C3A8F3 /* Images.xcassets in Resources */,
+				05A0995318DDDAE100C3A8F3 /* InfoPlist.strings in Resources */,
+				05A0995918DDDAE100C3A8F3 /* Credits.rtf in Resources */,
+				05A0998518DDDC4500C3A8F3 /* Example CGI Scripts in Resources */,
+				05A0996218DDDAE100C3A8F3 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05A0994118DDDAE000C3A8F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05A0995518DDDAE100C3A8F3 /* main.m in Sources */,
+				05A0998118DDDB2900C3A8F3 /* SpecialProtocol.m in Sources */,
+				05A0995C18DDDAE100C3A8F3 /* STYDocument.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		05A0995118DDDAE100C3A8F3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05A0995218DDDAE100C3A8F3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		05A0995718DDDAE100C3A8F3 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05A0995818DDDAE100C3A8F3 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		05A0995D18DDDAE100C3A8F3 /* STYDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05A0995E18DDDAE100C3A8F3 /* Base */,
+			);
+			name = STYDocument.xib;
+			sourceTree = "<group>";
+		};
+		05A0996018DDDAE100C3A8F3 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05A0996118DDDAE100C3A8F3 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		05A0997718DDDAE100C3A8F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		05A0997818DDDAE100C3A8F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		05A0997A18DDDAE100C3A8F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Staycation/Staycation-Prefix.pch";
+				INFOPLIST_FILE = "Staycation/Staycation-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		05A0997B18DDDAE100C3A8F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Staycation/Staycation-Prefix.pch";
+				INFOPLIST_FILE = "Staycation/Staycation-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05A0994018DDDAE000C3A8F3 /* Build configuration list for PBXProject "Staycation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05A0997718DDDAE100C3A8F3 /* Debug */,
+				05A0997818DDDAE100C3A8F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05A0997918DDDAE100C3A8F3 /* Build configuration list for PBXNativeTarget "Staycation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05A0997A18DDDAE100C3A8F3 /* Debug */,
+				05A0997B18DDDAE100C3A8F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 05A0993D18DDDAE000C3A8F3 /* Project object */;
+}
