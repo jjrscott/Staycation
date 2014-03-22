@@ -1,4 +1,6 @@
 Staycation
 ==========
 
-Staycation is an OX X application that acts as a front end for CGI executed locally.
+Staycation is an OS X application that acts as a front end for CGI executed locally.
+
+Staycation works by assuming any executable file you drag to it is a CGI script, executes it and displays the results.
