@@ -68,4 +68,9 @@
     }
     return displayName;
 }
+
+-(IBAction)reloadPage:(id)sender
+{
+    [_webView reloadFromOrigin:sender];
+}
 @end

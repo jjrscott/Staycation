@@ -14,4 +14,6 @@
 @property (nonatomic, strong) IBOutlet WebView *webView;
 @property (nonatomic, strong) NSURL *absoluteURL;
 
+-(IBAction)reloadPage:(id)sender;
+
 @end
