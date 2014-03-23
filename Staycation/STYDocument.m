@@ -74,7 +74,7 @@
     {
         _title = nil;
     }
-    [self.windowForSheet setTitle:_title];
+    [self.windowForSheet setTitle:[self displayName]];
 }
 
 -(IBAction)reloadPage:(id)sender
@@ -84,7 +84,7 @@
 
 -(NSString*)displayName
 {
-    return _title;
+    return _title ?: [super displayName];
 }
 
 @end

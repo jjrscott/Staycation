@@ -121,9 +121,9 @@
     
     if ([[foo objectForKey:NSFilePosixPermissions] integerValue] & 0x40)
     {
-        NSTask * list = [[NSTask alloc] init];
-        [list setLaunchPath:file];
-        [list setCurrentDirectoryPath:[file stringByDeletingLastPathComponent]];
+        NSTask * task = [[NSTask alloc] init];
+        [task setLaunchPath:file];
+        [task setCurrentDirectoryPath:[file stringByDeletingLastPathComponent]];
         
         NSMutableDictionary *environment = [NSMutableDictionary dictionary];
         
@@ -157,48 +157,56 @@
         //        SET_ENVIRONMENT(@"SERVER_SIGNATURE", nil);
         //        SET_ENVIRONMENT(@"SERVER_SOFTWARE", nil);
 
-        [list setEnvironment:environment];
+        [task setEnvironment:environment];
         
         NSPipe *inPipe = [NSPipe pipe];
-        [list setStandardInput:inPipe];
+        [task setStandardInput:inPipe];
 
         
         NSPipe * outPipe = [NSPipe pipe];
-        [list setStandardOutput:outPipe];
+        [task setStandardOutput:outPipe];
         
-        NSMutableData *data = [NSMutableData data];
-
-       [list launch];
+        NSPipe * errPipe = [NSPipe pipe];
+        [task setStandardError:errPipe];
         
-        NSFileHandle * write = [inPipe fileHandleForWriting];
+        [task launch];
+        
         if (request.HTTPBody)
         {
-            [write writeData:request.HTTPBody];
+            [[inPipe fileHandleForWriting] writeData:request.HTTPBody];
             NSLog(@"%@", [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
         }
-        [write closeFile];
-//        [list waitUntilExit];
-        
-        [data appendData:[[outPipe fileHandleForReading] readDataToEndOfFile]];
-        
-        NSRange range = [data rangeOfData:[@"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding] options:0 range:NSMakeRange(0, [data length])];
+        [[inPipe fileHandleForWriting] closeFile];
         
         NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
-        headerFields[@"Content-Type"] = @"text/html";
-
-        if (range.location != NSNotFound)
+        NSMutableData *data = [NSMutableData data];
+        [data appendData:[[outPipe fileHandleForReading] readDataToEndOfFile]];
+        
+        if ([data length] > 0)
         {
-            NSString *headers = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, range.location)] encoding:NSUTF8StringEncoding];
+            NSRange range = [data rangeOfData:[@"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding] options:0 range:NSMakeRange(0, [data length])];
             
-            NSLog(@"headers: %@", headers);
+            headerFields[@"Content-Type"] = @"text/html";
             
-            [headers enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-                NSArray *entry = [line componentsSeparatedByString:@":"];
-                NSString *key = [entry[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                NSString *value = [entry[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                headerFields[key] = value;
-            }];
-            [data replaceBytesInRange:NSMakeRange(0, range.location + range.length) withBytes:NULL length:0];
+            if (range.location != NSNotFound)
+            {
+                NSString *headers = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, range.location)] encoding:NSUTF8StringEncoding];
+                
+                NSLog(@"headers: %@", headers);
+                
+                [headers enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+                    NSArray *entry = [line componentsSeparatedByString:@":"];
+                    NSString *key = [entry[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    NSString *value = [entry[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    headerFields[key] = value;
+                }];
+                [data replaceBytesInRange:NSMakeRange(0, range.location + range.length) withBytes:NULL length:0];
+            }
+        }
+        else
+        {
+            headerFields[@"Content-Type"] = @"text/plain";
+            [data appendData:[[errPipe fileHandleForReading] readDataToEndOfFile]];
         }
         
         NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
