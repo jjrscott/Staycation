@@ -31,7 +31,7 @@
                             <nil key="identifier"/>
                         </webPreferences>
                         <connections>
-                            <outlet property="resourceLoadDelegate" destination="-2" id="dMg-kx-Wva"/>
+                            <outlet property="frameLoadDelegate" destination="-2" id="tfa-fP-hT6"/>
                         </connections>
                     </webView>
                 </subviews>

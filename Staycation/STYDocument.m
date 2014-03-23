@@ -10,6 +10,9 @@
 #import "SpecialProtocol.h"
 
 @implementation STYDocument
+{
+    NSString *_title;
+}
 
 +(void)load
 {
@@ -29,7 +32,7 @@
 
 -(void)dealloc
 {
-    _webView.resourceLoadDelegate = nil;
+    _webView.frameLoadDelegate = nil;
 }
 
 - (NSString *)windowNibName
@@ -64,19 +67,24 @@
     return NO;
 }
 
-- (void)webView:(WebView *)sender resource:(id)identifier didFinishLoadingFromDataSource:(WebDataSource *)dataSource;
+- (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame
 {
-    NSString *displayName = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    if ([displayName length] == 0)
+    _title = title;
+    if ([_title length] == 0)
     {
-        displayName = nil;
+        _title = nil;
     }
-    [self.windowForSheet setTitle:displayName];
+    [self.windowForSheet setTitle:_title];
 }
 
 -(IBAction)reloadPage:(id)sender
 {
     [_webView reloadFromOrigin:sender];
+}
+
+-(NSString*)displayName
+{
+    return _title;
 }
 
 @end
