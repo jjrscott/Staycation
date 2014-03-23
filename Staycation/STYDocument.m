@@ -27,6 +27,11 @@
     return self;
 }
 
+-(void)dealloc
+{
+    _webView.resourceLoadDelegate = nil;
+}
+
 - (NSString *)windowNibName
 {
     // Override returning the nib file name of the document
@@ -59,18 +64,19 @@
     return NO;
 }
 
--(NSString*)displayName
+- (void)webView:(WebView *)sender resource:(id)identifier didFinishLoadingFromDataSource:(WebDataSource *)dataSource;
 {
     NSString *displayName = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     if ([displayName length] == 0)
     {
-        displayName = [super displayName];
+        displayName = nil;
     }
-    return displayName;
+    [self.windowForSheet setTitle:displayName];
 }
 
 -(IBAction)reloadPage:(id)sender
 {
     [_webView reloadFromOrigin:sender];
 }
+
 @end
