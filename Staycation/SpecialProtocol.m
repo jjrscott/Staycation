@@ -166,9 +166,30 @@
         SET_ENVIRONMENT(@"SCRIPT_NAME", pathString);
         SET_ENVIRONMENT(@"SERVER_PROTOCOL", @"HTTP/1.0");
         SET_ENVIRONMENT(@"DOCUMENT_ROOT", [baseString stringByAppendingString:@"/"]);
+        
+        NSArray *preferredLanguages = [NSLocale preferredLanguages];
+        NSMutableString *acceptLangauges = [NSMutableString string];
+        double languageIndex = 1;
+        for (NSString* languageIdentifier in preferredLanguages)
+        {
+            NSString* acceptLangauge = [languageIdentifier stringByReplacingOccurrencesOfString:@"_" withString:@"-"];
+            acceptLangauge = [acceptLangauge lowercaseString];
+            
+            double languageQuality = 1. - languageIndex/[preferredLanguages count];
+            if (languageIndex > 1)
+            {
+                [acceptLangauges appendFormat:@", %@;q=%.3f", acceptLangauge, languageQuality];
+            }
+            else
+            {
+                [acceptLangauges appendString:acceptLangauge];
+            }
+            
+            languageIndex++;
+        }
+        SET_ENVIRONMENT(@"HTTP_ACCEPT_LANGUAGE", acceptLangauges);
 
         //        SET_ENVIRONMENT(@"HTTP_ACCEPT_ENCODING", nil);
-        //        SET_ENVIRONMENT(@"HTTP_ACCEPT_LANGUAGE", nil);
         //        SET_ENVIRONMENT(@"HTTP_ACCEPT", nil);
         //        SET_ENVIRONMENT(@"HTTP_CONNECTION", nil);
         //        SET_ENVIRONMENT(@"HTTP_HOST", nil);
