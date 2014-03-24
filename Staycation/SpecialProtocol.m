@@ -156,16 +156,8 @@
         
         SET_ENVIRONMENT(@"CONTENT_LENGTH", ([NSString stringWithFormat:@"%ld", [request.HTTPBody length]]));
         SET_ENVIRONMENT(@"CONTENT_TYPE", request.allHTTPHeaderFields[@"Content-Type"]);
-        SET_ENVIRONMENT(@"GATEWAY_INTERFACE", @"CGI/1.1");
-        SET_ENVIRONMENT(@"HTTP_USER_AGENT", request.allHTTPHeaderFields[@"User-Agent"]);
-        SET_ENVIRONMENT(@"HTTP_X_REQUESTED_WITH", request.allHTTPHeaderFields[@"X-Requested-With"]);
-        SET_ENVIRONMENT(@"QUERY_STRING", [request.URL query] ?: @"");
-        SET_ENVIRONMENT(@"REQUEST_METHOD", request.HTTPMethod);
-        SET_ENVIRONMENT(@"REQUEST_URI", pathString);
-        SET_ENVIRONMENT(@"SCRIPT_FILENAME", file);
-        SET_ENVIRONMENT(@"SCRIPT_NAME", pathString);
-        SET_ENVIRONMENT(@"SERVER_PROTOCOL", @"HTTP/1.0");
         SET_ENVIRONMENT(@"DOCUMENT_ROOT", [baseString stringByAppendingString:@"/"]);
+        SET_ENVIRONMENT(@"GATEWAY_INTERFACE", @"CGI/1.1");
         
         NSArray *preferredLanguages = [NSLocale preferredLanguages];
         NSMutableString *acceptLangauges = [NSMutableString string];
@@ -188,6 +180,15 @@
             languageIndex++;
         }
         SET_ENVIRONMENT(@"HTTP_ACCEPT_LANGUAGE", acceptLangauges);
+        SET_ENVIRONMENT(@"HTTP_USER_AGENT", request.allHTTPHeaderFields[@"User-Agent"]);
+        SET_ENVIRONMENT(@"HTTP_X_REQUESTED_WITH", request.allHTTPHeaderFields[@"X-Requested-With"]);
+        SET_ENVIRONMENT(@"QUERY_STRING", [request.URL query] ?: @"");
+        SET_ENVIRONMENT(@"REQUEST_METHOD", request.HTTPMethod);
+        SET_ENVIRONMENT(@"REQUEST_URI", pathString);
+        SET_ENVIRONMENT(@"SCRIPT_FILENAME", file);
+        SET_ENVIRONMENT(@"SCRIPT_NAME", pathString);
+        SET_ENVIRONMENT(@"SERVER_ADMIN", @"[no address given]");
+        SET_ENVIRONMENT(@"SERVER_PROTOCOL", @"HTTP/1.0");
 
         //        SET_ENVIRONMENT(@"HTTP_ACCEPT_ENCODING", nil);
         //        SET_ENVIRONMENT(@"HTTP_ACCEPT", nil);
@@ -199,7 +200,6 @@
         //        SET_ENVIRONMENT(@"REMOTE_ADDR", nil);
         //        SET_ENVIRONMENT(@"REMOTE_PORT", nil);
         //        SET_ENVIRONMENT(@"SERVER_ADDR", nil);
-        //        SET_ENVIRONMENT(@"SERVER_ADMIN", nil);
         //        SET_ENVIRONMENT(@"SERVER_NAME", nil);
         //        SET_ENVIRONMENT(@"SERVER_PORT", nil);
         //        SET_ENVIRONMENT(@"SERVER_SIGNATURE", nil);
