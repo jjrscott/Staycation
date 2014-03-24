@@ -49,6 +49,8 @@
 
 #import "SpecialProtocol.h"
 
+#import "NSData+STYAdditions.h"
+
 @implementation SpecialProtocol
 
 	/* class method for protocol called by webview to determine if this
@@ -115,11 +117,36 @@
 		
 		/* allocate an NSImage with large dimensions enough to draw the entire string. */
     
-    NSString *file = [request.URL path];
+    NSString *baseString = [[NSString alloc] initWithData:[NSData STYAdditions_dataWithHexEncodedString:[request.URL host]] encoding:NSUTF8StringEncoding];
+    NSString *pathString = [request.URL path];
     
-    NSDictionary *foo = [[NSFileManager defaultManager] attributesOfItemAtPath:file error:NULL];
+    NSString *file = [baseString stringByAppendingPathComponent:pathString];
     
-    if ([[foo objectForKey:NSFilePosixPermissions] integerValue] & 0x40)
+    NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:file error:NULL];
+    
+    if ([fileAttributes[NSFileType] isEqual:NSFileTypeDirectory])
+    {
+        NSFileManager *defaultManager = [NSFileManager defaultManager];
+        NSSet *fileContents = [NSSet setWithArray:[defaultManager contentsOfDirectoryAtPath:file error:NULL]];
+        
+        NSArray *possibleFiles = @[
+                                   @"index.html",
+                                   @"index.cgi"
+                                   ];
+        
+        for (NSString *possibleFile in possibleFiles)
+        {
+            if ([fileContents containsObject:possibleFile])
+            {
+                file = [file stringByAppendingPathComponent:possibleFile];
+                break;
+            }
+        }
+    }
+    
+    fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:file error:NULL];
+    
+    if ([fileAttributes[NSFilePosixPermissions] integerValue] & 0x40)
     {
         NSTask * task = [[NSTask alloc] init];
         [task setLaunchPath:file];
@@ -134,12 +161,12 @@
         SET_ENVIRONMENT(@"HTTP_X_REQUESTED_WITH", request.allHTTPHeaderFields[@"X-Requested-With"]);
         SET_ENVIRONMENT(@"QUERY_STRING", [request.URL query] ?: @"");
         SET_ENVIRONMENT(@"REQUEST_METHOD", request.HTTPMethod);
-        SET_ENVIRONMENT(@"REQUEST_URI", file);
+        SET_ENVIRONMENT(@"REQUEST_URI", pathString);
         SET_ENVIRONMENT(@"SCRIPT_FILENAME", file);
-        SET_ENVIRONMENT(@"SCRIPT_NAME", file);
+        SET_ENVIRONMENT(@"SCRIPT_NAME", pathString);
         SET_ENVIRONMENT(@"SERVER_PROTOCOL", @"HTTP/1.0");
-        
-        //        SET_ENVIRONMENT(@"DOCUMENT_ROOT", nil);
+        SET_ENVIRONMENT(@"DOCUMENT_ROOT", [baseString stringByAppendingString:@"/"]);
+
         //        SET_ENVIRONMENT(@"HTTP_ACCEPT_ENCODING", nil);
         //        SET_ENVIRONMENT(@"HTTP_ACCEPT_LANGUAGE", nil);
         //        SET_ENVIRONMENT(@"HTTP_ACCEPT", nil);

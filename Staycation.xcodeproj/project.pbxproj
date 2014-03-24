@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		058A11D518DF8031007C1104 /* NSThread+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */; };
+		058A11D818E0AA9B007C1104 /* NSData+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */; };
 		05A0994918DDDAE000C3A8F3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A0994818DDDAE000C3A8F3 /* Cocoa.framework */; };
 		05A0995318DDDAE100C3A8F3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05A0995118DDDAE100C3A8F3 /* InfoPlist.strings */; };
 		05A0995518DDDAE100C3A8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0995418DDDAE100C3A8F3 /* main.m */; };
@@ -21,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		058A11D318DF8031007C1104 /* NSThread+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSThread+STYAdditions.h"; sourceTree = "<group>"; };
+		058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSThread+STYAdditions.m"; sourceTree = "<group>"; };
+		058A11D618E0AA9B007C1104 /* NSData+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+STYAdditions.h"; sourceTree = "<group>"; };
+		058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+STYAdditions.m"; sourceTree = "<group>"; };
 		05A0994518DDDAE000C3A8F3 /* Staycation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Staycation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05A0994818DDDAE000C3A8F3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		05A0994B18DDDAE000C3A8F3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -106,6 +112,10 @@
 				05A0996018DDDAE100C3A8F3 /* MainMenu.xib */,
 				05A0996318DDDAE100C3A8F3 /* Images.xcassets */,
 				05A0994F18DDDAE000C3A8F3 /* Supporting Files */,
+				058A11D618E0AA9B007C1104 /* NSData+STYAdditions.h */,
+				058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */,
+				058A11D318DF8031007C1104 /* NSThread+STYAdditions.h */,
+				058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */,
 			);
 			path = Staycation;
 			sourceTree = "<group>";
@@ -191,7 +201,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058A11D818E0AA9B007C1104 /* NSData+STYAdditions.m in Sources */,
 				05A0995518DDDAE100C3A8F3 /* main.m in Sources */,
+				058A11D518DF8031007C1104 /* NSThread+STYAdditions.m in Sources */,
 				05A0998118DDDB2900C3A8F3 /* SpecialProtocol.m in Sources */,
 				05A0995C18DDDAE100C3A8F3 /* STYDocument.m in Sources */,
 			);
@@ -348,6 +360,7 @@
 				05A0997B18DDDAE100C3A8F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

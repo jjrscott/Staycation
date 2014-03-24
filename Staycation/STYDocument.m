@@ -8,6 +8,7 @@
 
 #import "STYDocument.h"
 #import "SpecialProtocol.h"
+#import "NSData+STYAdditions.h"
 
 @implementation STYDocument
 {
@@ -56,7 +57,27 @@
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://_%@",[[absoluteURL path] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *file = [absoluteURL path];
+    
+    NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:file error:NULL];
+    
+    NSString *baseString = nil;
+    NSString *pathString = nil;
+
+    if ([fileAttributes[NSFileType] isEqual:NSFileTypeDirectory])
+    {
+        baseString = file;
+        pathString = @"";
+    }
+    else
+    {
+        baseString = [file stringByDeletingLastPathComponent];
+        pathString = [file lastPathComponent];
+    }
+    
+    baseString = [[baseString dataUsingEncoding:NSUTF8StringEncoding] STYAdditions_hexEncodedString];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://%@/%@", baseString, pathString];
     self.absoluteURL = [NSURL URLWithString:urlString];
     *outError = nil;
     return YES;
