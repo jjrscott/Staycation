@@ -124,7 +124,11 @@
         
         NSArray *possibleFiles = @[
                                    @"index.html",
-                                   @"index.cgi"
+                                   @"index.cgi",
+                                   @"index.pl",
+                                   @"index.php",
+                                   @"index.xhtml",
+                                   @"index.htm",
                                    ];
         
         for (NSString *possibleFile in possibleFiles)
@@ -144,7 +148,16 @@
     if (([fileAttributes[NSFilePosixPermissions] integerValue] & 0x40))
     {
         NSTask * task = [[NSTask alloc] init];
-        [task setLaunchPath:file];
+        if ([[file pathExtension] isEqual:@"php"])
+        {
+            [task setLaunchPath:@"/usr/bin/php"];
+            [task setArguments:@[file]];
+        }
+        else
+        {
+            [task setLaunchPath:file];
+        }
+        
         [task setCurrentDirectoryPath:[file stringByDeletingLastPathComponent]];
         
         NSMutableDictionary *environment = [NSMutableDictionary dictionary];
