@@ -56,11 +56,6 @@
 	/* class method for protocol called by webview to determine if this
 	protocol should be used to load the request. */
 + (BOOL)canInitWithRequest:(NSURLRequest *)theRequest {
-
-	NSLog(@"%@ received %@ with url='%@' and scheme='%@'", 
-			self, NSStringFromSelector(_cmd),
-			[[theRequest URL] absoluteString], [[theRequest URL] scheme]);
-	
 		/* get the scheme from the URL */
 	NSString *theScheme = [[theRequest URL] scheme];
 	
@@ -73,8 +68,6 @@
 	canonicalRequestForRequest method so you have an opportunity to modify
 	the NSURLRequest before processing the request */
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
-
-	NSLog(@"%@ received %@", self, NSStringFromSelector(_cmd));
 	
 	/* we don't do any special processing here, though we include this
 	method because all subclasses must implement this method. */
@@ -105,7 +98,7 @@
 	interesting part is that we create the jpeg entirely in memory and return
 	it back for rendering in the webView.  */
 - (void)startLoading {
-	NSLog(@"%@ received %@ - start", self, NSStringFromSelector(_cmd));
+	NSLog(@"> %@ %@", NSStringFromSelector(_cmd), self.request.URL.path);
 	
 		/* retrieve the current request. */
     NSURLRequest *request = [self request];
@@ -146,7 +139,9 @@
     
     fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:file error:NULL];
     
-    if ([fileAttributes[NSFilePosixPermissions] integerValue] & 0x40)
+    NSString *mimeType = [self mimeTypeForFileAtPath:file];
+    
+    if (([fileAttributes[NSFilePosixPermissions] integerValue] & 0x40))
     {
         NSTask * task = [[NSTask alloc] init];
         [task setLaunchPath:file];
@@ -217,59 +212,93 @@
         NSPipe * errPipe = [NSPipe pipe];
         [task setStandardError:errPipe];
         
-        [task launch];
+        NSMutableData *outData = [NSMutableData data];
+        NSMutableData *errData = [NSMutableData data];
         
-        if (request.HTTPBody)
-        {
-            [[inPipe fileHandleForWriting] writeData:request.HTTPBody];
-            NSLog(@"%@", [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
-        }
-        [[inPipe fileHandleForWriting] closeFile];
+        [[outPipe fileHandleForReading] setReadabilityHandler:^(NSFileHandle *handle) {
+            NSLog(@"- %@ %@ read out", NSStringFromSelector(_cmd), self.request.URL.path);
+            [outData appendData:[handle readDataToEndOfFile]];
+        }];
         
-        NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
-        NSMutableData *data = [NSMutableData data];
-        [data appendData:[[outPipe fileHandleForReading] readDataToEndOfFile]];
+        [[errPipe fileHandleForReading] setReadabilityHandler:^(NSFileHandle *handle) {
+            NSLog(@"- %@ %@  read err", NSStringFromSelector(_cmd), self.request.URL.path);
+            [errData appendData:[handle readDataToEndOfFile]];
+        }];
         
-        if ([data length] > 0)
-        {
-            NSRange range = [data rangeOfData:[@"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding] options:0 range:NSMakeRange(0, [data length])];
+        [task setTerminationHandler:^(NSTask *aTask) {
+            NSLog(@"- %@ %@ termination", NSStringFromSelector(_cmd), self.request.URL.path);
             
-            headerFields[@"Content-Type"] = @"text/html";
-            
-            if (range.location != NSNotFound)
+            if (aTask.terminationReason == NSTaskTerminationReasonUncaughtSignal)
             {
-                NSString *headers = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, range.location)] encoding:NSUTF8StringEncoding];
-                
-                NSLog(@"headers: %@", headers);
-                
-                [headers enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-                    NSArray *entry = [line componentsSeparatedByString:@":"];
-                    NSString *key = [entry[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                    NSString *value = [entry[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                    headerFields[key] = value;
-                }];
-                [data replaceBytesInRange:NSMakeRange(0, range.location + range.length) withBytes:NULL length:0];
+                NSData *data = [NSData dataWithContentsOfFile:file];
+                [self handleData:data headerFields:@{@"Content-Type" : mimeType} request:request];
             }
-        }
-        else
-        {
-            headerFields[@"Content-Type"] = @"text/plain";
-            [data appendData:[[errPipe fileHandleForReading] readDataToEndOfFile]];
-        }
+            else if (aTask.terminationReason == NSTaskTerminationReasonExit)
+            {
+                if ([outData length] > 0)
+                {
+                    NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
+                    NSRange range = [outData rangeOfData:[@"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding] options:0 range:NSMakeRange(0, [outData length])];
+                    
+                    headerFields[@"Content-Type"] = @"text/html";
+                    
+                    if (range.location != NSNotFound)
+                    {
+                        NSString *headers = [[NSString alloc] initWithData:[outData subdataWithRange:NSMakeRange(0, range.location)] encoding:NSUTF8StringEncoding];
+                        
+                        [headers enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+                            NSArray *entry = [line componentsSeparatedByString:@":"];
+                            NSString *key = [entry[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                            NSString *value = [entry[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                            headerFields[key] = value;
+                            NSLog(@"- %@ %@ header %@ = %@", NSStringFromSelector(_cmd), self.request.URL.path, key, value);
+                        }];
+                        [outData replaceBytesInRange:NSMakeRange(0, range.location + range.length) withBytes:NULL length:0];
+                    }
+                    [self handleData:outData headerFields:headerFields request:request];
+                }
+                else
+                {
+                    [self handleData:errData headerFields:@{@"Content-Type" : @"text/plain"} request:request];
+                }
+
+            }
+        }];
         
-        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        [self handleData:data headerFields:headerFields request:request];
+        @try {
+            [task launch];
+
+            
+            if (request.HTTPBody)
+            {
+                [[inPipe fileHandleForWriting] writeData:request.HTTPBody];
+                NSLog(@"%@", [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
+            }
+            [[inPipe fileHandleForWriting] closeFile];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"- %@  exception %@", NSStringFromSelector(_cmd), self.request.URL.path);
+            [task terminate];
+            NSData *data = [NSData dataWithContentsOfFile:file];
+            [self handleData:data headerFields:@{@"Content-Type" : mimeType} request:request];
+        }
+        @finally {
+            
+        }
+
     }
     else
     {
+        NSLog(@"- %@ %@ plain file", NSStringFromSelector(_cmd), self.request.URL.path);
         NSData *data = [NSData dataWithContentsOfFile:file];
-        NSString *mimeType = [self mimeTypeForFileAtPath:file];
         [self handleData:data headerFields:@{@"Content-Type" : mimeType} request:request];
     }
+	NSLog(@"< %@ %@", NSStringFromSelector(_cmd), self.request.URL.path);
 }
 
 -(void)handleData:(NSData*)data headerFields:(NSDictionary*)headerFields request:(NSURLRequest*)request
 {
+	NSLog(@"> %@ %@", NSStringFromSelector(_cmd), request.URL.path);
     /* create the response record, set the mime type to jpeg */
     
     NSMutableDictionary *extendedHeaderFields = [NSMutableDictionary dictionaryWithDictionary:headerFields];
@@ -303,14 +332,14 @@
     
     /* added the extra log statement here so you can see that stopLoading is called
      by the underlying machinery before we leave this routine. */
-	NSLog(@"%@ received %@ - end", self, NSStringFromSelector(_cmd));
+	NSLog(@"< %@ %@", NSStringFromSelector(_cmd), request.URL.path);
 }
 
 		/* called to stop loading or to abort loading.  We don't do anything special
 		here. */
 - (void)stopLoading
 {
-	NSLog(@"%@ received %@", self, NSStringFromSelector(_cmd));
+	NSLog(@"- %@ %@", NSStringFromSelector(_cmd), self.request.URL.path);
 }
 
 
