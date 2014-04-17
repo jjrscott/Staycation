@@ -12,6 +12,7 @@
 		05744F201900254500B64E7B /* sty.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05744F1F1900254500B64E7B /* sty.1 */; };
 		05744F29190043DF00B64E7B /* NSMutableArray+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */; };
 		05744F71190077F800B64E7B /* STYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F70190077F800B64E7B /* STYAppDelegate.m */; };
+		05744F72190082A500B64E7B /* NSMutableArray+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */; };
 		058A11D518DF8031007C1104 /* NSThread+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */; };
 		058A11D818E0AA9B007C1104 /* NSData+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */; };
 		058A11E018EA0FAC007C1104 /* Staycation.icns in Resources */ = {isa = PBXBuildFile; fileRef = 058A11DF18EA0FAC007C1104 /* Staycation.icns */; };
@@ -298,6 +299,7 @@
 				058A11D518DF8031007C1104 /* NSThread+STYAdditions.m in Sources */,
 				05A0998118DDDB2900C3A8F3 /* SpecialProtocol.m in Sources */,
 				05A0995C18DDDAE100C3A8F3 /* STYDocument.m in Sources */,
+				05744F72190082A500B64E7B /* NSMutableArray+STYAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

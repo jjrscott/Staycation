@@ -50,6 +50,7 @@
 #import "SpecialProtocol.h"
 
 #import "NSData+STYAdditions.h"
+#import "NSMutableArray+STYAdditions.h"
 
 @implementation SpecialProtocol
 
@@ -260,9 +261,9 @@
                         NSString *headers = [[NSString alloc] initWithData:[outData subdataWithRange:NSMakeRange(0, range.location)] encoding:NSUTF8StringEncoding];
                         
                         [headers enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-                            NSArray *entry = [line componentsSeparatedByString:@":"];
-                            NSString *key = [entry[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                            NSString *value = [entry[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                            NSMutableArray *entry = [NSMutableArray arrayWithArray:[line componentsSeparatedByString:@":"]];
+                            NSString *key = [[entry STYAdditions_popFirstObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                            NSString *value = [[entry componentsJoinedByString:@":"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                             headerFields[key] = value;
                             NSLog(@"- %@ %@ header %@ = %@", NSStringFromSelector(_cmd), self.request.URL.path, key, value);
                         }];
@@ -313,9 +314,9 @@
             NSString *headers = [[NSString alloc] initWithData:[outData subdataWithRange:NSMakeRange(0, range.location)] encoding:NSUTF8StringEncoding];
             
             [headers enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-                NSArray *entry = [line componentsSeparatedByString:@":"];
-                NSString *key = [entry[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                NSString *value = [entry[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                NSMutableArray *entry = [NSMutableArray arrayWithArray:[line componentsSeparatedByString:@":"]];
+                NSString *key = [[entry STYAdditions_popFirstObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                NSString *value = [[entry componentsJoinedByString:@":"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                 headerFields[key] = value;
                 NSLog(@"- %@ %@ header %@ = %@", NSStringFromSelector(_cmd), self.request.URL.path, key, value);
             }];
