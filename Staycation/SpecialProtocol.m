@@ -300,6 +300,30 @@
         }
 
     }
+    else if ([[pathString pathExtension] isEqual:@"staycation"])
+    {
+        NSMutableData *outData = [NSMutableData dataWithContentsOfFile:file];
+        NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
+        NSRange range = [outData rangeOfData:[@"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding] options:0 range:NSMakeRange(0, [outData length])];
+        
+        headerFields[@"Content-Type"] = @"text/plain";
+        
+        if (range.location != NSNotFound)
+        {
+            NSString *headers = [[NSString alloc] initWithData:[outData subdataWithRange:NSMakeRange(0, range.location)] encoding:NSUTF8StringEncoding];
+            
+            [headers enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+                NSArray *entry = [line componentsSeparatedByString:@":"];
+                NSString *key = [entry[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                NSString *value = [entry[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                headerFields[key] = value;
+                NSLog(@"- %@ %@ header %@ = %@", NSStringFromSelector(_cmd), self.request.URL.path, key, value);
+            }];
+            [outData replaceBytesInRange:NSMakeRange(0, range.location + range.length) withBytes:NULL length:0];
+        }
+        [self handleData:outData headerFields:headerFields request:request];
+
+    }
     else
     {
         NSLog(@"- %@ %@ plain file", NSStringFromSelector(_cmd), self.request.URL.path);

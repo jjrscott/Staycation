@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05744F191900254500B64E7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05744F181900254500B64E7B /* Foundation.framework */; };
+		05744F1C1900254500B64E7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F1B1900254500B64E7B /* main.m */; };
+		05744F201900254500B64E7B /* sty.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05744F1F1900254500B64E7B /* sty.1 */; };
+		05744F29190043DF00B64E7B /* NSMutableArray+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */; };
 		058A11D518DF8031007C1104 /* NSThread+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */; };
 		058A11D818E0AA9B007C1104 /* NSData+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */; };
 		058A11E018EA0FAC007C1104 /* Staycation.icns in Resources */ = {isa = PBXBuildFile; fileRef = 058A11DF18EA0FAC007C1104 /* Staycation.icns */; };
@@ -23,7 +27,27 @@
 		05A0998518DDDC4500C3A8F3 /* Example CGI Scripts in Resources */ = {isa = PBXBuildFile; fileRef = 05A0998418DDDC4500C3A8F3 /* Example CGI Scripts */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		05744F151900254500B64E7B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				05744F201900254500B64E7B /* sty.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		05744F171900254500B64E7B /* sty */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sty; sourceTree = BUILT_PRODUCTS_DIR; };
+		05744F181900254500B64E7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		05744F1B1900254500B64E7B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05744F1E1900254500B64E7B /* sty-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sty-Prefix.pch"; sourceTree = "<group>"; };
+		05744F1F1900254500B64E7B /* sty.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = sty.1; sourceTree = "<group>"; };
+		05744F27190043DF00B64E7B /* NSMutableArray+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+STYAdditions.h"; sourceTree = "<group>"; };
+		05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+STYAdditions.m"; sourceTree = "<group>"; };
 		058A11D318DF8031007C1104 /* NSThread+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSThread+STYAdditions.h"; sourceTree = "<group>"; };
 		058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSThread+STYAdditions.m"; sourceTree = "<group>"; };
 		058A11D618E0AA9B007C1104 /* NSData+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+STYAdditions.h"; sourceTree = "<group>"; };
@@ -52,6 +76,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		05744F141900254500B64E7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05744F191900254500B64E7B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05A0994218DDDAE000C3A8F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,10 +96,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05744F1A1900254500B64E7B /* sty */ = {
+			isa = PBXGroup;
+			children = (
+				05744F1B1900254500B64E7B /* main.m */,
+				05744F1F1900254500B64E7B /* sty.1 */,
+				05744F27190043DF00B64E7B /* NSMutableArray+STYAdditions.h */,
+				05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */,
+				05744F1D1900254500B64E7B /* Supporting Files */,
+			);
+			path = sty;
+			sourceTree = "<group>";
+		};
+		05744F1D1900254500B64E7B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				05744F1E1900254500B64E7B /* sty-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		05A0993C18DDDAE000C3A8F3 = {
 			isa = PBXGroup;
 			children = (
 				05A0994E18DDDAE000C3A8F3 /* Staycation */,
+				05744F1A1900254500B64E7B /* sty */,
 				05A0994718DDDAE000C3A8F3 /* Frameworks */,
 				05A0994618DDDAE000C3A8F3 /* Products */,
 				05A0998418DDDC4500C3A8F3 /* Example CGI Scripts */,
@@ -78,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				05A0994518DDDAE000C3A8F3 /* Staycation.app */,
+				05744F171900254500B64E7B /* sty */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,6 +142,7 @@
 				05A0998218DDDB9C00C3A8F3 /* WebKit.framework */,
 				05A0994818DDDAE000C3A8F3 /* Cocoa.framework */,
 				05A0996A18DDDAE100C3A8F3 /* XCTest.framework */,
+				05744F181900254500B64E7B /* Foundation.framework */,
 				05A0994A18DDDAE000C3A8F3 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -138,6 +193,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		05744F161900254500B64E7B /* sty */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05744F231900254500B64E7B /* Build configuration list for PBXNativeTarget "sty" */;
+			buildPhases = (
+				05744F131900254500B64E7B /* Sources */,
+				05744F141900254500B64E7B /* Frameworks */,
+				05744F151900254500B64E7B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sty;
+			productName = sty;
+			productReference = 05744F171900254500B64E7B /* sty */;
+			productType = "com.apple.product-type.tool";
+		};
 		05A0994418DDDAE000C3A8F3 /* Staycation */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05A0997918DDDAE100C3A8F3 /* Build configuration list for PBXNativeTarget "Staycation" */;
@@ -179,6 +251,7 @@
 			projectRoot = "";
 			targets = (
 				05A0994418DDDAE000C3A8F3 /* Staycation */,
+				05744F161900254500B64E7B /* sty */,
 			);
 		};
 /* End PBXProject section */
@@ -201,6 +274,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		05744F131900254500B64E7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05744F29190043DF00B64E7B /* NSMutableArray+STYAdditions.m in Sources */,
+				05744F1C1900254500B64E7B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05A0994118DDDAE000C3A8F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,6 +333,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		05744F211900254500B64E7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "sty/sty-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05744F221900254500B64E7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "sty/sty-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05A0997718DDDAE100C3A8F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -346,6 +454,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		05744F231900254500B64E7B /* Build configuration list for PBXNativeTarget "sty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05744F211900254500B64E7B /* Debug */,
+				05744F221900254500B64E7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		05A0994018DDDAE000C3A8F3 /* Build configuration list for PBXProject "Staycation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
