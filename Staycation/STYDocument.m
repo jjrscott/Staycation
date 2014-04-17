@@ -13,6 +13,7 @@
 @implementation STYDocument
 {
     NSString *_title;
+    BOOL _keepTitle;
 }
 
 +(void)load
@@ -34,6 +35,7 @@
 -(void)dealloc
 {
     _webView.frameLoadDelegate = nil;
+    _webView.resourceLoadDelegate = nil;
 }
 
 - (NSString *)windowNibName
@@ -47,6 +49,7 @@
 {
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    _keepTitle = NO;
 	[[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:self.absoluteURL]];
 }
 
@@ -90,22 +93,33 @@
 
 - (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame
 {
-    _title = title;
-    if ([_title length] == 0)
+    if (title != nil && !_keepTitle)
     {
-        _title = nil;
+        _title = title;
+        [self.windowForSheet setTitle:[self displayName]];
     }
-    [self.windowForSheet setTitle:[self displayName]];
 }
 
 -(IBAction)reloadPage:(id)sender
 {
+    _keepTitle = NO;
     [_webView reloadFromOrigin:sender];
 }
 
 -(NSString*)displayName
 {
     return _title ?: [super displayName];
+}
+
+- (void)webView:(WebView *)sender resource:(id)identifier didReceiveResponse:(NSHTTPURLResponse *)response fromDataSource:(WebDataSource *)dataSource
+{
+    NSString *title = response.allHeaderFields[@"X-STY-Title"];
+    if (title != nil)
+    {
+        _title = title;
+        _keepTitle = YES;
+        [self.windowForSheet setTitle:[self displayName]];
+    }
 }
 
 @end

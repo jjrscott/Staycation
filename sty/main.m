@@ -28,8 +28,6 @@ int main(int argc, const char * argv[])
         
         NSString *path = [[directory stringByAppendingPathComponent:termSessionId] stringByAppendingPathExtension:@"staycation"];
         
-//        NSLog(@"path: %@", path);
-        
         [defaultManager createFileAtPath:path contents:nil attributes:nil];
         
         NSFileHandle *cacheFileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
@@ -37,12 +35,15 @@ int main(int argc, const char * argv[])
         NSMutableArray *arguments = [NSMutableArray arrayWithArray:NSProcessInfo.processInfo.arguments];
         [arguments STYAdditions_popFirstObject];
         NSString *argument = nil;
+        BOOL hasAddedHeader = NO;
         while ((argument = [arguments STYAdditions_popFirstObject]) != nil)
         {
             if ([argument isEqual:@"--header"] || [argument isEqual:@"-H"])
             {
-                [cacheFileHandle writeData:[[arguments STYAdditions_popFirstObject] dataUsingEncoding:NSUTF8StringEncoding]];
+                NSString *value = [arguments STYAdditions_popFirstObject];
+                [cacheFileHandle writeData:[value dataUsingEncoding:NSUTF8StringEncoding]];
                 [cacheFileHandle writeData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                hasAddedHeader = YES;
             }
             else
             {
@@ -51,18 +52,10 @@ int main(int argc, const char * argv[])
             }
         }
         
-//        NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
-        
-//        headerFields[@"Content-Type: text/plain";
-//        
-//        for (NSString *key in headerFields)
-//        {
-//            [cacheFileHandle writeData:[key dataUsingEncoding:NSUTF8StringEncoding]];
-//            [cacheFileHandle writeData:[@": " dataUsingEncoding:NSUTF8StringEncoding]];
-//            [cacheFileHandle writeData:[headerFields[key] dataUsingEncoding:NSUTF8StringEncoding]];
-//            [cacheFileHandle writeData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-//        }
-        
+        if (!hasAddedHeader)
+        {
+            [cacheFileHandle writeData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        }
         [cacheFileHandle writeData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
 
         NSUInteger dataLength = 1;

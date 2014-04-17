@@ -11,6 +11,7 @@
 		05744F1C1900254500B64E7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F1B1900254500B64E7B /* main.m */; };
 		05744F201900254500B64E7B /* sty.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05744F1F1900254500B64E7B /* sty.1 */; };
 		05744F29190043DF00B64E7B /* NSMutableArray+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */; };
+		05744F71190077F800B64E7B /* STYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F70190077F800B64E7B /* STYAppDelegate.m */; };
 		058A11D518DF8031007C1104 /* NSThread+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */; };
 		058A11D818E0AA9B007C1104 /* NSData+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */; };
 		058A11E018EA0FAC007C1104 /* Staycation.icns in Resources */ = {isa = PBXBuildFile; fileRef = 058A11DF18EA0FAC007C1104 /* Staycation.icns */; };
@@ -48,6 +49,8 @@
 		05744F1F1900254500B64E7B /* sty.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = sty.1; sourceTree = "<group>"; };
 		05744F27190043DF00B64E7B /* NSMutableArray+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+STYAdditions.h"; sourceTree = "<group>"; };
 		05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+STYAdditions.m"; sourceTree = "<group>"; };
+		05744F6F190077F800B64E7B /* STYAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STYAppDelegate.h; sourceTree = "<group>"; };
+		05744F70190077F800B64E7B /* STYAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STYAppDelegate.m; sourceTree = "<group>"; };
 		058A11D318DF8031007C1104 /* NSThread+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSThread+STYAdditions.h"; sourceTree = "<group>"; };
 		058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSThread+STYAdditions.m"; sourceTree = "<group>"; };
 		058A11D618E0AA9B007C1104 /* NSData+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+STYAdditions.h"; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				05A0995B18DDDAE100C3A8F3 /* STYDocument.m */,
 				05A0995D18DDDAE100C3A8F3 /* STYDocument.xib */,
 				05A0996018DDDAE100C3A8F3 /* MainMenu.xib */,
+				05744F6F190077F800B64E7B /* STYAppDelegate.h */,
+				05744F70190077F800B64E7B /* STYAppDelegate.m */,
 				05A0996318DDDAE100C3A8F3 /* Images.xcassets */,
 				05A0994F18DDDAE000C3A8F3 /* Supporting Files */,
 				058A11D618E0AA9B007C1104 /* NSData+STYAdditions.h */,
@@ -288,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058A11D818E0AA9B007C1104 /* NSData+STYAdditions.m in Sources */,
+				05744F71190077F800B64E7B /* STYAppDelegate.m in Sources */,
 				05A0995518DDDAE100C3A8F3 /* main.m in Sources */,
 				058A11D518DF8031007C1104 /* NSThread+STYAdditions.m in Sources */,
 				05A0998118DDDB2900C3A8F3 /* SpecialProtocol.m in Sources */,
