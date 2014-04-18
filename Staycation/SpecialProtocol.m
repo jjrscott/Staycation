@@ -329,7 +329,12 @@
     {
         NSLog(@"- %@ %@ plain file", NSStringFromSelector(_cmd), self.request.URL.path);
         NSData *data = [NSData dataWithContentsOfFile:file];
-        [self handleData:data headerFields:@{@"Content-Type" : mimeType} request:request];
+        NSDictionary *headerFields = nil;
+        if (mimeType != nil)
+        {
+            headerFields = @{@"Content-Type" : mimeType};
+        }
+        [self handleData:data headerFields:headerFields request:request];
     }
 	NSLog(@"< %@ %@", NSStringFromSelector(_cmd), self.request.URL.path);
 }
