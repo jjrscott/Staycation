@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053D94D01901973D00A4F8C4 /* sty in Resources */ = {isa = PBXBuildFile; fileRef = 05744F171900254500B64E7B /* sty */; };
 		05744F191900254500B64E7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05744F181900254500B64E7B /* Foundation.framework */; };
 		05744F1C1900254500B64E7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F1B1900254500B64E7B /* main.m */; };
 		05744F201900254500B64E7B /* sty.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05744F1F1900254500B64E7B /* sty.1 */; };
@@ -26,8 +27,17 @@
 		05A0996418DDDAE100C3A8F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A0996318DDDAE100C3A8F3 /* Images.xcassets */; };
 		05A0998118DDDB2900C3A8F3 /* SpecialProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0998018DDDB2900C3A8F3 /* SpecialProtocol.m */; };
 		05A0998318DDDB9C00C3A8F3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A0998218DDDB9C00C3A8F3 /* WebKit.framework */; };
-		05A0998518DDDC4500C3A8F3 /* Example CGI Scripts in Resources */ = {isa = PBXBuildFile; fileRef = 05A0998418DDDC4500C3A8F3 /* Example CGI Scripts */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		053D94CE190196FC00A4F8C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05A0993D18DDDAE000C3A8F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05744F161900254500B64E7B;
+			remoteInfo = sty;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		05744F151900254500B64E7B /* CopyFiles */ = {
@@ -227,6 +237,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				053D94CF190196FC00A4F8C4 /* PBXTargetDependency */,
 			);
 			name = Staycation;
 			productName = Staycation;
@@ -267,12 +278,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				053D94D01901973D00A4F8C4 /* sty in Resources */,
 				058A11E018EA0FAC007C1104 /* Staycation.icns in Resources */,
 				05A0995F18DDDAE100C3A8F3 /* STYDocument.xib in Resources */,
 				05A0996418DDDAE100C3A8F3 /* Images.xcassets in Resources */,
 				05A0995318DDDAE100C3A8F3 /* InfoPlist.strings in Resources */,
 				05A0995918DDDAE100C3A8F3 /* Credits.rtf in Resources */,
-				05A0998518DDDC4500C3A8F3 /* Example CGI Scripts in Resources */,
 				05A0996218DDDAE100C3A8F3 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +315,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		053D94CF190196FC00A4F8C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05744F161900254500B64E7B /* sty */;
+			targetProxy = 053D94CE190196FC00A4F8C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		05A0995118DDDAE100C3A8F3 /* InfoPlist.strings */ = {
