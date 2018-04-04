@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		053D94D01901973D00A4F8C4 /* sty in Resources */ = {isa = PBXBuildFile; fileRef = 05744F171900254500B64E7B /* sty */; };
+		055367472074F7C800030041 /* AppIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 055367462074F7C700030041 /* AppIcon.pdf */; };
 		05744F191900254500B64E7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05744F181900254500B64E7B /* Foundation.framework */; };
 		05744F1C1900254500B64E7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F1B1900254500B64E7B /* main.m */; };
 		05744F201900254500B64E7B /* sty.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05744F1F1900254500B64E7B /* sty.1 */; };
@@ -16,7 +17,6 @@
 		05744F72190082A500B64E7B /* NSMutableArray+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */; };
 		058A11D518DF8031007C1104 /* NSThread+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */; };
 		058A11D818E0AA9B007C1104 /* NSData+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */; };
-		058A11E018EA0FAC007C1104 /* Staycation.icns in Resources */ = {isa = PBXBuildFile; fileRef = 058A11DF18EA0FAC007C1104 /* Staycation.icns */; };
 		05A0994918DDDAE000C3A8F3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A0994818DDDAE000C3A8F3 /* Cocoa.framework */; };
 		05A0995318DDDAE100C3A8F3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05A0995118DDDAE100C3A8F3 /* InfoPlist.strings */; };
 		05A0995518DDDAE100C3A8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0995418DDDAE100C3A8F3 /* main.m */; };
@@ -53,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		055367462074F7C700030041 /* AppIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AppIcon.pdf; sourceTree = "<group>"; };
 		05744F171900254500B64E7B /* sty */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sty; sourceTree = BUILT_PRODUCTS_DIR; };
 		05744F181900254500B64E7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05744F1B1900254500B64E7B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -66,7 +67,6 @@
 		058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSThread+STYAdditions.m"; sourceTree = "<group>"; };
 		058A11D618E0AA9B007C1104 /* NSData+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+STYAdditions.h"; sourceTree = "<group>"; };
 		058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+STYAdditions.m"; sourceTree = "<group>"; };
-		058A11DF18EA0FAC007C1104 /* Staycation.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Staycation.icns; sourceTree = "<group>"; };
 		05A0994518DDDAE000C3A8F3 /* Staycation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Staycation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05A0994818DDDAE000C3A8F3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		05A0994B18DDDAE000C3A8F3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -196,7 +196,7 @@
 		05A0994F18DDDAE000C3A8F3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				058A11DF18EA0FAC007C1104 /* Staycation.icns */,
+				055367462074F7C700030041 /* AppIcon.pdf */,
 				05A0995018DDDAE100C3A8F3 /* Staycation-Info.plist */,
 				05A0995118DDDAE100C3A8F3 /* InfoPlist.strings */,
 				05A0995418DDDAE100C3A8F3 /* main.m */,
@@ -278,8 +278,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055367472074F7C800030041 /* AppIcon.pdf in Resources */,
 				053D94D01901973D00A4F8C4 /* sty in Resources */,
-				058A11E018EA0FAC007C1104 /* Staycation.icns in Resources */,
 				05A0995F18DDDAE100C3A8F3 /* STYDocument.xib in Resources */,
 				05A0996418DDDAE100C3A8F3 /* Images.xcassets in Resources */,
 				05A0995318DDDAE100C3A8F3 /* InfoPlist.strings in Resources */,
@@ -457,6 +457,7 @@
 		05A0997A18DDDAE100C3A8F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staycation/Staycation-Prefix.pch";
@@ -469,6 +470,7 @@
 		05A0997B18DDDAE100C3A8F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staycation/Staycation-Prefix.pch";
