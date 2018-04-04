@@ -1,7 +1,7 @@
 Staycation
 ==========
 
-<img src="Staycation/AppIcon.pdf" width="200">
+<img src="Staycation/Images.xcassets/AppIcon.appiconset/AppIcon_512x512.png" width="256">
 
 Staycation is an OS X application that acts as a front end for CGI executed locally.
 
