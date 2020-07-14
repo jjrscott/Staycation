@@ -52,6 +52,7 @@
 #import "NSData+STYAdditions.h"
 #import "NSMutableArray+STYAdditions.h"
 
+
 @implementation SpecialProtocol
 
 	/* class method for protocol called by webview to determine if this
@@ -198,6 +199,8 @@
         SET_ENVIRONMENT(@"SCRIPT_NAME", pathString);
         SET_ENVIRONMENT(@"SERVER_ADMIN", @"[no address given]");
         SET_ENVIRONMENT(@"SERVER_PROTOCOL", @"HTTP/1.0");
+        
+        SET_ENVIRONMENT(@"HOME", NSProcessInfo.processInfo.environment[@"HOME"]);
 
         //        SET_ENVIRONMENT(@"HTTP_ACCEPT_ENCODING", nil);
         //        SET_ENVIRONMENT(@"HTTP_ACCEPT", nil);
@@ -229,21 +232,51 @@
         NSMutableData *outData = [NSMutableData data];
         NSMutableData *errData = [NSMutableData data];
         
+        dispatch_queue_t queue = dispatch_queue_create("bob", 0);
+        
         [[outPipe fileHandleForReading] setReadabilityHandler:^(NSFileHandle *handle) {
-            NSLog(@"- %@ %@ read out", NSStringFromSelector(_cmd), self.request.URL.path);
-            [outData appendData:[handle readDataToEndOfFile]];
+            NSData *data = [handle readDataToEndOfFile];
+            dispatch_sync(queue, ^{
+                NSLog(@"> %@ %@ read out (%ld)", NSStringFromSelector(_cmd), self.request.URL.path, data.length);
+                [outData appendData:data];
+                NSLog(@"< %@ %@ read out (%ld)", NSStringFromSelector(_cmd), self.request.URL.path, data.length);
+            });
         }];
         
         [[errPipe fileHandleForReading] setReadabilityHandler:^(NSFileHandle *handle) {
-            NSLog(@"- %@ %@  read err", NSStringFromSelector(_cmd), self.request.URL.path);
-            [errData appendData:[handle readDataToEndOfFile]];
+            NSData *data = [handle readDataToEndOfFile];
+            dispatch_sync(queue, ^{
+                NSLog(@"> %@ %@ read err (%ld)", NSStringFromSelector(_cmd), self.request.URL.path, data.length);
+                [errData appendData:data];
+                NSLog(@"< %@ %@ read err (%ld)", NSStringFromSelector(_cmd), self.request.URL.path, data.length);
+            });
         }];
         
         [task setTerminationHandler:^(NSTask *aTask) {
-            NSLog(@"- %@ %@ termination", NSStringFromSelector(_cmd), self.request.URL.path);
+            dispatch_sync(queue, ^{
+                {
+                    NSData *data = [outPipe.fileHandleForReading readDataToEndOfFile];
+                    NSLog(@"- %@ %@ final read out (%ld)", NSStringFromSelector(_cmd), self.request.URL.path, data.length);
+                    [outData appendData:data];
+                }
+                
+                {
+                    NSData *data = [errPipe.fileHandleForReading readDataToEndOfFile];
+                    NSLog(@"- %@ %@ final read err (%ld)", NSStringFromSelector(_cmd), self.request.URL.path, data.length);
+                    [errData appendData:data];
+                }
+                NSLog(@"- %@ %@ finished out: %ld err: %ld", NSStringFromSelector(_cmd), self.request.URL.path, outData.length, errData.length);
+            });
+            NSLog(@"> %@ %@ termination %d %ld", NSStringFromSelector(_cmd), self.request.URL.path, aTask.terminationStatus, aTask.terminationReason);
+            
+            if (errData.length)
+            {
+                NSLog(@"- %@ %@", NSStringFromSelector(_cmd), [[NSString alloc] initWithData:errData encoding:NSUTF8StringEncoding]);
+            }
             
             if (aTask.terminationReason == NSTaskTerminationReasonUncaughtSignal)
             {
+                NSLog(@"- %@ %@ uncaught signal", NSStringFromSelector(_cmd), self.request.URL.path);
                 NSData *data = [NSData dataWithContentsOfFile:file];
                 [self handleData:data headerFields:@{@"Content-Type" : mimeType} request:request];
             }
@@ -258,6 +291,8 @@
                     
                     if (range.location != NSNotFound)
                     {
+                        NSLog(@"- %@ %@ headers: %@", NSStringFromSelector(_cmd), self.request.URL.path, NSStringFromRange(range));
+
                         NSString *headers = [[NSString alloc] initWithData:[outData subdataWithRange:NSMakeRange(0, range.location)] encoding:NSUTF8StringEncoding];
                         
                         [headers enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
@@ -269,17 +304,26 @@
                         }];
                         [outData replaceBytesInRange:NSMakeRange(0, range.location + range.length) withBytes:NULL length:0];
                     }
+                    else
+                    {
+                        NSLog(@"- %@ %@ no headers", NSStringFromSelector(_cmd), self.request.URL.path);
+                    }
                     [self handleData:outData headerFields:headerFields request:request];
                 }
                 else
                 {
                     [self handleData:errData headerFields:@{@"Content-Type" : @"text/plain"} request:request];
                 }
-
             }
+            else
+            {
+                
+            }
+            NSLog(@"< %@ %@ termination %d", NSStringFromSelector(_cmd), self.request.URL.path, aTask.terminationStatus);
         }];
         
         @try {
+            
             [task launch];
 
             
@@ -292,7 +336,7 @@
         }
         @catch (NSException *exception) {
             NSLog(@"- %@  exception %@", NSStringFromSelector(_cmd), self.request.URL.path);
-            [task terminate];
+            if (task.running) [task terminate];
             NSData *data = [NSData dataWithContentsOfFile:file];
             [self handleData:data headerFields:@{@"Content-Type" : mimeType} request:request];
         }
@@ -341,17 +385,19 @@
 
 -(void)handleData:(NSData*)data headerFields:(NSDictionary*)headerFields request:(NSURLRequest*)request
 {
-	NSLog(@"> %@ %@", NSStringFromSelector(_cmd), request.URL.path);
     /* create the response record, set the mime type to jpeg */
     
     NSMutableDictionary *extendedHeaderFields = [NSMutableDictionary dictionaryWithDictionary:headerFields];
     extendedHeaderFields[@"Access-Control-Allow-Origin"] = @"*";
     extendedHeaderFields[@"Access-Control-Allow-Headers"] = @"Content-Type";
     extendedHeaderFields[@"Content-Length"] = [NSString stringWithFormat:@"%ld", [data length]];
+    extendedHeaderFields[@"Cache-Control"] = @"no-cache";
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:request.URL
                                                               statusCode:200
                                                              HTTPVersion:@"1.0"
                                                             headerFields:extendedHeaderFields];
+    
+    NSLog(@"> %@ %@ (data: %ld) headerFields: %@", NSStringFromSelector(_cmd), request.URL.path, data.length, extendedHeaderFields);
     
     /* turn off caching for this response data */
 	[[self client] URLProtocol:self didReceiveResponse:response
@@ -366,7 +412,7 @@
     /* if an error occured during our load, here is the code we would
      execute to send that information back to webKit.  We're not using it here,
      but you will probably want to use this code for proper error handling.  */
-	if (0) { /* in case of error */
+	if ((0)) { /* in case of error */
         int resultCode;
         resultCode = NSURLErrorResourceUnavailable;
         [[self client] URLProtocol:self didFailWithError:[NSError errorWithDomain:NSURLErrorDomain

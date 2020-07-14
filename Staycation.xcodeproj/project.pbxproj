@@ -8,14 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		053D94D01901973D00A4F8C4 /* sty in Resources */ = {isa = PBXBuildFile; fileRef = 05744F171900254500B64E7B /* sty */; };
-		055367472074F7C800030041 /* AppIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 055367462074F7C700030041 /* AppIcon.pdf */; };
 		05744F191900254500B64E7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05744F181900254500B64E7B /* Foundation.framework */; };
 		05744F1C1900254500B64E7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F1B1900254500B64E7B /* main.m */; };
 		05744F201900254500B64E7B /* sty.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05744F1F1900254500B64E7B /* sty.1 */; };
 		05744F29190043DF00B64E7B /* NSMutableArray+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */; };
 		05744F71190077F800B64E7B /* STYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F70190077F800B64E7B /* STYAppDelegate.m */; };
 		05744F72190082A500B64E7B /* NSMutableArray+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */; };
-		058A11D518DF8031007C1104 /* NSThread+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */; };
 		058A11D818E0AA9B007C1104 /* NSData+STYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */; };
 		05A0994918DDDAE000C3A8F3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A0994818DDDAE000C3A8F3 /* Cocoa.framework */; };
 		05A0995318DDDAE100C3A8F3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05A0995118DDDAE100C3A8F3 /* InfoPlist.strings */; };
@@ -53,7 +51,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		055367462074F7C700030041 /* AppIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AppIcon.pdf; sourceTree = "<group>"; };
 		05744F171900254500B64E7B /* sty */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sty; sourceTree = BUILT_PRODUCTS_DIR; };
 		05744F181900254500B64E7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05744F1B1900254500B64E7B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,8 +60,6 @@
 		05744F28190043DF00B64E7B /* NSMutableArray+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+STYAdditions.m"; sourceTree = "<group>"; };
 		05744F6F190077F800B64E7B /* STYAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STYAppDelegate.h; sourceTree = "<group>"; };
 		05744F70190077F800B64E7B /* STYAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STYAppDelegate.m; sourceTree = "<group>"; };
-		058A11D318DF8031007C1104 /* NSThread+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSThread+STYAdditions.h"; sourceTree = "<group>"; };
-		058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSThread+STYAdditions.m"; sourceTree = "<group>"; };
 		058A11D618E0AA9B007C1104 /* NSData+STYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+STYAdditions.h"; sourceTree = "<group>"; };
 		058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+STYAdditions.m"; sourceTree = "<group>"; };
 		05A0994518DDDAE000C3A8F3 /* Staycation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Staycation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,8 +182,6 @@
 				05A0994F18DDDAE000C3A8F3 /* Supporting Files */,
 				058A11D618E0AA9B007C1104 /* NSData+STYAdditions.h */,
 				058A11D718E0AA9B007C1104 /* NSData+STYAdditions.m */,
-				058A11D318DF8031007C1104 /* NSThread+STYAdditions.h */,
-				058A11D418DF8031007C1104 /* NSThread+STYAdditions.m */,
 			);
 			path = Staycation;
 			sourceTree = "<group>";
@@ -196,7 +189,6 @@
 		05A0994F18DDDAE000C3A8F3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				055367462074F7C700030041 /* AppIcon.pdf */,
 				05A0995018DDDAE100C3A8F3 /* Staycation-Info.plist */,
 				05A0995118DDDAE100C3A8F3 /* InfoPlist.strings */,
 				05A0995418DDDAE100C3A8F3 /* main.m */,
@@ -251,12 +243,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = STY;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "John Scott";
 			};
 			buildConfigurationList = 05A0994018DDDAE000C3A8F3 /* Build configuration list for PBXProject "Staycation" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -278,7 +270,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				055367472074F7C800030041 /* AppIcon.pdf in Resources */,
 				053D94D01901973D00A4F8C4 /* sty in Resources */,
 				05A0995F18DDDAE100C3A8F3 /* STYDocument.xib in Resources */,
 				05A0996418DDDAE100C3A8F3 /* Images.xcassets in Resources */,
@@ -307,7 +298,6 @@
 				058A11D818E0AA9B007C1104 /* NSData+STYAdditions.m in Sources */,
 				05744F71190077F800B64E7B /* STYAppDelegate.m in Sources */,
 				05A0995518DDDAE100C3A8F3 /* main.m in Sources */,
-				058A11D518DF8031007C1104 /* NSThread+STYAdditions.m in Sources */,
 				05A0998118DDDB2900C3A8F3 /* SpecialProtocol.m in Sources */,
 				05A0995C18DDDAE100C3A8F3 /* STYDocument.m in Sources */,
 				05744F72190082A500B64E7B /* NSMutableArray+STYAdditions.m in Sources */,
@@ -364,6 +354,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sty/sty-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -379,6 +370,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sty/sty-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -390,21 +382,36 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -427,22 +434,36 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -458,10 +479,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staycation/Staycation-Prefix.pch";
 				INFOPLIST_FILE = "Staycation/Staycation-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjrscott.staycation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -471,10 +494,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staycation/Staycation-Prefix.pch";
 				INFOPLIST_FILE = "Staycation/Staycation-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjrscott.staycation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

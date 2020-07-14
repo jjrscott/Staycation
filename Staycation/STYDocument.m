@@ -122,4 +122,13 @@
     }
 }
 
+- (void)webView:(WebView *)webView decidePolicyForNewWindowAction:(NSDictionary *)actionInformation
+        request:(NSURLRequest *)request
+   newFrameName:(NSString *)frameName
+decisionListener:(id<WebPolicyDecisionListener>)listener
+{
+    [NSWorkspace.sharedWorkspace openURL:request.URL];
+    [listener ignore];
+}
+
 @end
