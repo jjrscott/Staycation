@@ -337,6 +337,8 @@
         @catch (NSException *exception) {
             NSLog(@"- %@  exception %@", NSStringFromSelector(_cmd), self.request.URL.path);
             if (task.running) [task terminate];
+            [[outPipe fileHandleForReading] closeFile];
+            [[errPipe fileHandleForReading] closeFile];
             NSData *data = [NSData dataWithContentsOfFile:file];
             [self handleData:data headerFields:@{@"Content-Type" : mimeType} request:request];
         }
