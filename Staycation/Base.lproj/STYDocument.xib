@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,13 +19,13 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="133" y="235" width="724" height="542"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
             <value key="minSize" type="size" width="94" height="86"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="724" height="542"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <webView id="1qQ-rh-gyG">
+                    <webView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1qQ-rh-gyG">
                         <rect key="frame" x="0.0" y="0.0" width="724" height="542"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
@@ -39,10 +39,40 @@
                     </webView>
                 </subviews>
             </view>
+            <toolbar key="toolbar" implicitIdentifier="7149D9D4-94A8-43C5-A858-CAF5B9F2A70F" displayMode="iconAndLabel" sizeMode="regular" id="IRN-B9-6as">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="zfW-S3-MmU"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="ghs-no-nUn"/>
+                    <toolbarItem implicitItemIdentifier="76BAF179-C3E7-4AE1-AFE2-3A598CE3DAE2" label="Reload" paletteLabel="Reload" tag="-1" image="sync" id="J08-AK-mBT">
+                        <size key="minSize" width="16" height="16"/>
+                        <size key="maxSize" width="16" height="16"/>
+                        <connections>
+                            <action selector="reload:" target="-1" id="uYQ-tF-0eV"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="917A1BFF-0385-49BB-8CB4-65E59C90D63B" label="Dark" paletteLabel="Dark" tag="-1" image="moon" id="xVU-Fo-cAv">
+                        <size key="minSize" width="16" height="16"/>
+                        <size key="maxSize" width="16" height="16"/>
+                        <connections>
+                            <action selector="toggleDarkMode:" target="-1" id="Maz-Lk-5j0"/>
+                        </connections>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="ghs-no-nUn"/>
+                    <toolbarItem reference="J08-AK-mBT"/>
+                    <toolbarItem reference="xVU-Fo-cAv"/>
+                </defaultToolbarItems>
+            </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
+            <point key="canvasLocation" x="139" y="147"/>
         </window>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
     </objects>
+    <resources>
+        <image name="moon" width="16" height="16"/>
+        <image name="sync" width="16" height="16"/>
+    </resources>
 </document>

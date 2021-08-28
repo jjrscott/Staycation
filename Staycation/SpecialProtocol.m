@@ -335,7 +335,7 @@
             [[inPipe fileHandleForWriting] closeFile];
         }
         @catch (NSException *exception) {
-            NSLog(@"- %@  exception %@", NSStringFromSelector(_cmd), self.request.URL.path);
+            NSLog(@"- %@  exception %@ %@", NSStringFromSelector(_cmd), self.request.URL.path, exception);
             if (task.running) [task terminate];
             [[outPipe fileHandleForReading] closeFile];
             [[errPipe fileHandleForReading] closeFile];

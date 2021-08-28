@@ -10,11 +10,14 @@
 #import "SpecialProtocol.h"
 #import "NSData+STYAdditions.h"
 
+@interface STYDocument ()
+
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, assign) BOOL keepTitle;
+
+@end
+
 @implementation STYDocument
-{
-    NSString *_title;
-    BOOL _keepTitle;
-}
 
 +(void)load
 {
@@ -49,7 +52,7 @@
 {
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
-    _keepTitle = NO;
+    self.keepTitle = NO;
 	[[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:self.absoluteURL]];
 }
 
@@ -93,22 +96,38 @@
 
 - (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame
 {
-    if (title != nil && !_keepTitle)
+    if (title != nil && !self.keepTitle)
     {
-        _title = title;
+        self.title = title;
         [self.windowForSheet setTitle:[self displayName]];
     }
 }
 
 -(IBAction)reloadPage:(id)sender
 {
-    _keepTitle = NO;
+    self.keepTitle = NO;
     [_webView reloadFromOrigin:sender];
+}
+
+-(IBAction)toggleDarkMode:(id)sender {
+    if (self.windowForSheet.appearance) {
+        self.windowForSheet.appearance = nil;
+    } else {
+        self.windowForSheet.appearance = [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua];
+    }
+}
+
+-(IBAction)darkMode:(id)sender {
+    self.windowForSheet.appearance = [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua];
+}
+
+-(IBAction)lightMode:(id)sender {
+    self.windowForSheet.appearance = nil;
 }
 
 -(NSString*)displayName
 {
-    return _title ?: [super displayName];
+    return self.title ?: [super displayName];
 }
 
 - (void)webView:(WebView *)sender resource:(id)identifier didReceiveResponse:(NSHTTPURLResponse *)response fromDataSource:(WebDataSource *)dataSource
@@ -116,8 +135,8 @@
     NSString *title = response.allHeaderFields[@"X-STY-Title"];
     if (title != nil)
     {
-        _title = title;
-        _keepTitle = YES;
+        self.title = title;
+        self.keepTitle = YES;
         [self.windowForSheet setTitle:[self displayName]];
     }
 }
