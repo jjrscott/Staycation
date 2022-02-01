@@ -27,6 +27,9 @@
 
 + (id)STYAdditions_dataWithHexEncodedString:(NSString*)hexEncodedString
 {
+    if (hexEncodedString.length % 2) {
+        return nil;
+    }
     NSMutableData *data = [NSMutableData data];
     for (NSInteger byteIndex=0; byteIndex < [hexEncodedString length]; byteIndex+=2)
     {
